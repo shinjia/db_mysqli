@@ -22,7 +22,7 @@ $html = <<< HEREDOC
   <p>備註：<input type="text" name="remark"></p>
   <input type="submit" value="新增">
 </form>
-
+ 
 </body>
 </html>
 HEREDOC;
