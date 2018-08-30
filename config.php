@@ -20,7 +20,6 @@ function db_open()
    return $link;
 }
 
-
 function db_close($link)
 {
    mysqli_close($link);
