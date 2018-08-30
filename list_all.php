@@ -12,7 +12,7 @@ $result = mysqli_query($link, $sqlstr);
 $total_rec = mysqli_num_rows($result);
 
 $data = '';
-while($row=mysqli_fetch_array($result))
+while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
    $uid      = $row['uid'];
    $usercode = $row['usercode'];
