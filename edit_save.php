@@ -11,7 +11,6 @@ $height   = isset($_POST['height'])   ? $_POST['height']   : '';
 $weight   = isset($_POST['weight'])   ? $_POST['weight']   : '';
 $remark   = isset($_POST['remark'])   ? $_POST['remark']   : '';
 
-
 // 連接資料庫
 $link = db_open();
 
