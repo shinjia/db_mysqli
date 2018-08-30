@@ -3,7 +3,6 @@ include 'config.php';
 
 $uid = isset($_GET['uid']) ? $_GET['uid'] : 0;
 
-
 // 連接資料庫
 $link = db_open();
 
@@ -61,7 +60,6 @@ else
 {
   $data = '找不到資料！';
 }
-
 
 db_close($link);
 
