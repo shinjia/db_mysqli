@@ -4,7 +4,6 @@ include 'config.php';
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;   // 目前的頁碼
 
-
 $numpp = 20; // 每頁的筆數
 
 
@@ -12,21 +11,8 @@ $numpp = 20; // 每頁的筆數
 $link = db_open();
 
 
-// 處理分頁、頁碼資料
-$sqlstr = "SELECT count(*) as total_rec FROM person ";
-$result = mysqli_query($link, $sqlstr);
-
-if($row=mysqli_fetch_array($result))
-{
-   $total_rec = $row["total_rec"];
-   // $total_rec = mysqli_num_rows($result);  // 計算總筆數
-}
-$total_page = ceil($total_rec / $numpp);  // 計算總頁數
-   
-
 // 擷取該分頁資料
 $tmp_start = ($page-1) * $numpp;  // 從第幾筆記錄開始抓取資料
-
 
 $sqlstr = "SELECT * FROM person ";
 $sqlstr .= " LIMIT " . $tmp_start . "," . $numpp;
@@ -66,8 +52,18 @@ while($row=mysqli_fetch_array($result))
 HEREDOC;
 }
 
-db_close($link);
 
+// 處理分頁、頁碼資料
+$sqlstr = "SELECT count(*) as total_rec FROM person ";
+$result = mysqli_query($link, $sqlstr);
+
+if($row=mysqli_fetch_array($result))
+{
+   $total_rec = $row["total_rec"];
+   // $total_rec = mysqli_num_rows($result);  // 計算總筆數
+}
+$total_page = ceil($total_rec / $numpp);  // 計算總頁數
+   
 
 // 分頁之超連結
 $navigator = "";
@@ -85,6 +81,9 @@ $lnk_pageprev  = "?page=" . (($page==1)?(1):($page-1));
 $lnk_pagenext  = "?page=" . (($page==$total_page)?($total_page):($page+1));
 $lnk_pagefirst = "?page=1";
 $lnk_pagelast  = "?page=" . $total_page;
+
+
+db_close($link);
 
 
 $html = <<< HEREDOC
