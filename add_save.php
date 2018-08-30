@@ -16,7 +16,6 @@ $link = db_open();
 // 寫出 SQL 語法
 $sqlstr = "INSERT INTO person(usercode, username, address, birthday, height, weight, remark) VALUES ('$usercode', '$username', '$address', '$birthday', '$height', '$weight', '$remark') ";
 
-
 // 執行 SQL
 if(mysqli_query($link, $sqlstr))
 {
