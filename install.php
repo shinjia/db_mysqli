@@ -3,7 +3,6 @@ include 'config.php';
 
 $table_name = 'person'; // 指定資料表名稱
 
-
 $sqlstr_install_table = '
 CREATE TABLE person (
   uid int NOT NULL auto_increment,
