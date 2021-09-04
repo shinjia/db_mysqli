@@ -10,7 +10,7 @@ $link = db_open();
 $sqlstr = "SELECT * FROM person WHERE uid=" . $uid;
 
 // 執行 SQL
-$result = mysqli_query($link, $sqlstr) or die(ERROR_QUERY);
+$result = mysqli_query($link, $sqlstr);
 
 if($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
