@@ -2,7 +2,7 @@
 // 含分頁之資料列表
 include 'config.php';
 
-$page = isset($_GET['page']) ? $_GET['page'] : 1;   // 目前的頁碼
+$page = $_GET['page'] ?? 1;   // 目前的頁碼
 
 $numpp = 20; // 每頁的筆數
 
@@ -21,8 +21,7 @@ $result = mysqli_query($link, $sqlstr);
 
 
 $data = '';
-while($row=mysqli_fetch_array($result))
-{
+while($row=mysqli_fetch_array($result)) {
    $uid      = $row['uid'];
    $usercode = $row['usercode'];
    $username = $row['username'];
@@ -57,8 +56,7 @@ HEREDOC;
 $sqlstr = "SELECT count(*) as total_rec FROM person ";
 $result = mysqli_query($link, $sqlstr);
 
-if($row=mysqli_fetch_array($result))
-{
+if($row=mysqli_fetch_array($result)) {
    $total_rec = $row["total_rec"];
    // $total_rec = mysqli_num_rows($result);  // 計算總筆數
 }
@@ -67,13 +65,11 @@ $total_page = ceil($total_rec / $numpp);  // 計算總頁數
 
 // 分頁之超連結
 $navigator = "";
-for($i=1; $i<=$page-1; $i++)
-{
+for($i=1; $i<=$page-1; $i++) {
    $navigator .= "<a href=\"?page=" . $i . "\">" . $i . "</a>&nbsp;";
 }
 $navigator .= "[" . $i . "]&nbsp;";
-for($i=$page+1; $i<=$total_page; $i++)
-{
+for($i=$page+1; $i<=$total_page; $i++) {
    $navigator .= "<a href=\"?page=" . $i .  "\">" . $i . "</a>&nbsp;";
 }
 

@@ -1,37 +1,35 @@
 <?php
 include 'config.php';
 
-$uid      = isset($_POST['uid'])      ? $_POST['uid']      : '';
+$uid = $_POST['uid'] ?? '';
 
-$usercode = isset($_POST['usercode']) ? $_POST['usercode'] : '';
-$username = isset($_POST['username']) ? $_POST['username'] : '';
-$address  = isset($_POST['address'])  ? $_POST['address']  : '';
-$birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
-$height   = isset($_POST['height'])   ? $_POST['height']   : '';
-$weight   = isset($_POST['weight'])   ? $_POST['weight']   : '';
-$remark   = isset($_POST['remark'])   ? $_POST['remark']   : '';
+$usercode = $_POST['usercode'] ?? '';
+$username = $_POST['username'] ?? '';
+$address  = $_POST['address']  ?? '';
+$birthday = $_POST['birthday'] ?? '';
+$height   = $_POST['height']   ?? '';
+$weight   = $_POST['weight']   ?? '';
+$remark   = $_POST['remark']   ?? '';
 
 // 連接資料庫
 $link = db_open();
 
-$sqlstr  = "UPDATE person SET ";
-$sqlstr .= "usercode='$usercode', ";
-$sqlstr .= "username='$username', ";
-$sqlstr .= "address ='$address' , ";
-$sqlstr .= "birthday='$birthday', ";
-$sqlstr .= "height  ='$height'  , ";
-$sqlstr .= "weight  ='$weight'  , ";
-$sqlstr .= "remark  ='$remark' ";  // 注意最後欄位沒有逗號
-$sqlstr .= "WHERE uid=" . $uid;
+$sqlstr  = "UPDATE person SET 
+   usercode='$usercode',
+   username='$username',
+   address ='$address' ,
+   birthday='$birthday',
+   height  ='$height'  ,
+   weight  ='$weight'  ,
+   remark  ='$remark'
+   WHERE uid= $uid ";    // 注意最後欄位沒有逗號
 
 
-if(mysqli_query($link, $sqlstr))
-{
+if(mysqli_query($link, $sqlstr)) {
    $msg = '資料已修改完畢!!!!!!!!';
    $msg .= '<br><a href="display.php?uid=' . $uid . '">詳細</a>';
 }
-else
-{
+else {
    $msg = '資料無法修改!!!!!!!';
    $msg .= '<hr>' . $sqlstr . '<hr>' . mysqli_error($link);
 }

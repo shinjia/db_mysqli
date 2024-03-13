@@ -13,15 +13,13 @@ define('ERROR_CHARACTER', 'Character set error');  // 無法使用指定的校�
 define('ERROR_QUERY',     'Error in SQL Query');  // 無法執行資料庫查詢指令
 
 
-function db_open()
-{
+function db_open() {
    $link = mysqli_connect(DB_SERVERIP, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die(ERROR_CONNECT);
    if(defined('SET_CHARACTER')) mysqli_query($link, SET_CHARACTER) or die(ERROR_CHARACTER);
    return $link;
 }
 
-function db_close($link)
-{
+function db_close($link) {
    mysqli_close($link);
 }
 

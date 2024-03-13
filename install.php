@@ -18,11 +18,10 @@ CREATE TABLE person (
 ';
 
 
-$op = isset($_GET['op']) ? $_GET['op'] : 'HOME';
+$op = $_GET['op'] ?? 'HOME';
 
 $msg = '';
-switch($op)
-{
+switch($op) {
    case 'CREATE_TABLE' :
         $link = db_open();
 

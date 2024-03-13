@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 
-$uid = isset($_GET['uid']) ? $_GET['uid'] : 0;
+$uid = $_GET['uid'] ?? 0;
 
 
 // 連接資料庫
@@ -10,8 +10,7 @@ $link = db_open();
 $sqlstr = "SELECT * FROM person WHERE uid=" . $uid;
 $result = mysqli_query($link, $sqlstr);
 
-if($row=mysqli_fetch_array($result))
-{
+if($row=mysqli_fetch_array($result)) {
    $uid      = $row['uid'];
    $usercode = $row['usercode'];
    $username = $row['username'];
@@ -35,8 +34,7 @@ if($row=mysqli_fetch_array($result))
    </form>
 HEREDOC;
 }
-else
-{
+else {
    $data = '找不到資料';
 }
 
